@@ -1,0 +1,65 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model PagedList.PagedList<WebApplication4.Models.ChiTietDonHang>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<<h2 style="color:red">Quản lý chi tiết đơn hàng</h2>
+
+<p>
+    @Html.ActionLink("thêm mới", "ThemMoi")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().MaDonHang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().MaSach)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().SoLuong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().DonGia)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaDonHang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sach.TenSach)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonGia)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "ChinhSua", new { @MaDH = item.MaDonHang,@MaSach=item.MaSach }) |
+                @Html.ActionLink("Hiển Thị", "HienThi", new { @MaDH = item.MaDonHang, @MaSach = item.MaSach }) |
+                @Html.ActionLink("Xóa", "Xoa", new { @MaDH = item.MaDonHang, @MaSach = item.MaSach })
+            </td>
+        </tr>
+    }
+
+</table>
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>

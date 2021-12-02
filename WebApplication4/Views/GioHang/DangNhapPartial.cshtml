@@ -1,0 +1,24 @@
+﻿
+    @if (Session["TaiKhoan"] != null)
+    {
+            
+            @Html.ActionLink(""+Session["username"],"HienThiTaiKhoan", "DangKyDangNhap", null, htmlAttributes: new { })
+            <a href="#">/</a>
+            <i class="fa fa-sign-in"></i>
+            @Html.ActionLink(" Thoát", "Thoat", "NguoiDung", null, htmlAttributes: new { @class = "Thoat" })
+
+    }
+    else
+    {
+            <i class="fa fa-sign-in"></i>
+            @Html.ActionLink("Đăng ký", "DangKy", "NguoiDung", null, htmlAttributes: new { @class = "DangKy" })
+            <i class="fa fa-unlock"></i>
+            @Html.ActionLink("Đăng nhập", "DangNhap", "DangKyDangNhap", null, htmlAttributes: new { @class = "DangNhap" })
+
+    }
+
+
+
+
+
+

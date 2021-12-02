@@ -1,0 +1,43 @@
+﻿@model WebApplication4.Models.NhaXuatBan
+
+@{
+    ViewBag.Title = "HienThi";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<h2 style="color:red">Hiển thị</h2>
+<div>
+    <h4 style="color:red">Nhà xuất bản</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaNXB)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaNXB)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TenNXB)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TenNXB)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DienThoai)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DienThoai)
+        </dd>
+    </dl>
+</div>
+<br /><br /><br />
+<p>
+    @Html.ActionLink("Trở về", "Index")  |
+    @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { @MaNXB = Model.MaNXB })
+</p>

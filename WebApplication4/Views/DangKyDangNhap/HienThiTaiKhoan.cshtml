@@ -1,0 +1,75 @@
+﻿@using WebApplication4.Models;
+@model WebApplication4.Models.KhachHang
+
+@{
+    ViewBag.Title = "HienThiTaiKhoan";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+<h1 style="color:red;margin-left:400px;">Thông tin tài khoản khách hàng</h1>
+<br/>
+<div style="margin-left:400px;">
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="float:left; width:300px;">
+            @Html.DisplayNameFor(model => model.MaKH)
+        </dt>
+        <dd style="float:left;">
+            @Html.DisplayFor(model => model.MaKH)
+        </dd>
+        <div style="clear:both;"></div>
+        <dt style="float:left;width:300px;">
+            @Html.DisplayNameFor(model => model.HoTen)
+        </dt>
+
+        <dd style="float:left;">
+            @Html.DisplayFor(model => model.HoTen)
+        </dd>
+        <div style="clear:both;"></div>
+        <dt style="float:left;width:300px;">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd style="float:left;">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <div style="clear:both;"></div>
+        <dt style="float:left;width:300px;">
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </dt>
+
+        <dd style="float:left;">
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+        <div style="clear:both;"></div>
+        <dt style="float:left;width:300px;">
+            @Html.DisplayNameFor(model => model.DienThoai)
+        </dt>
+
+        <dd style="float:left;">
+            @Html.DisplayFor(model => model.DienThoai)
+        </dd>
+        <div style="clear:both;"></div>
+        <dt style="float:left;width:300px;">
+            @Html.DisplayNameFor(model => model.GioiTinh)
+        </dt>
+
+        <dd style="float:left;">
+            @Html.DisplayFor(model => model.GioiTinh)
+        </dd>
+        <div style="clear:both;"></div>
+        <dt style="float:left;width:300px;">
+            @Html.DisplayNameFor(model => model.NgaySinh)
+        </dt>
+
+        <dd style="float:left;">
+            @Html.DisplayFor(model => model.NgaySinh)
+        </dd>
+
+    </dl>
+</div>
+<br/>
+<br/>
+<p style="margin-left:400px;">
+    @Html.ActionLink("Cập nhật thông tin", "CapNhatThongTin", new { @MaKH=Model.MaKH }) 
+</p>

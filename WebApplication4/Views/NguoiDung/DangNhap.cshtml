@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+<div style="clear:both;"></div>
+@if (Session["TKDK"] != null && Session["MKDK"] != null)
+{
+<div style="margin-left:500px;">
+    <h2 style="color:orangered;margin-left:100px;">
+        Đăng nhập
+    </h2>
+    <br/>
+    <br />
+    @using (Html.BeginForm())
+    {  <span style="float:left; width:120px;margin-top:10px;">Tài khoản   :</span>
+        <div style="float:left;width:300px;">@Html.TextBox("txtTaiKhoan",""+ Session["TKDK"])</div>
+        <br /><br />
+        <span style="float:left;width:120px;margin-top:10px;">Mật khẩu   :</span>
+        <div style="float:left;width:300px">@Html.Password("txtMatKhau",""+ Session["MKDK"])</div>
+        <br /><br />
+        <div style="margin-left:120px;"><input type="submit" id="btnSubmit" name="btnSubmit" /></div>
+
+    }
+</div>
+}
+else
+{
+    <div style="margin-left:500px;">
+        <h2 style="color:orangered;margin-left:100px;">
+            Đăng nhập
+        </h2>
+        <br />
+        <h1>@ViewBag.ThongBao</h1>
+        <br />
+        @using (Html.BeginForm())
+        {  <span style="float:left; width:120px;margin-top:10px;">Tài khoản   :</span>
+        <div style="float:left;width:300px;">@Html.TextBox("txtTaiKhoan")</div>
+        <br /><br />
+        <span style="float:left;width:120px;margin-top:10px;">Mật khẩu   :</span>
+        <div style="float:left;width:300px">@Html.Password("txtMatKhau")</div>
+        <br /><br />
+        <div style="margin-left:120px;"><input type="submit" id="btnSubmit" name="btnSubmit" /></div>
+
+        }
+    </div>
+}
+

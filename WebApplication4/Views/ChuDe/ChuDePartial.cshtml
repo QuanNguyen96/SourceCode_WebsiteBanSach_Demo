@@ -1,0 +1,21 @@
+﻿@using WebApplication4.Models;
+@model List<ChuDe>
+<hr />
+<h2 style="margin-left:2%;font-weight:normal;color:black">Danh mục chủ đề</h2>
+<hr />
+@foreach (var item in Model)
+{
+    <a id="btnChuDe" style="width: 250px; font-size: 11pt; color: aliceblue; background-color:#0855bd; text-decoration: none" href="@Url.Action("SachTheoChuDe", new {@MaChuDe=item.MaChuDe })" class="button button-submit"> @item.TenChuDe</a>
+}
+<br />
+<br />
+<a style="float: left; width: 250px; font-size: 11pt; color: aliceblue; background-color: #00a200; " href="@Url.Action("DanhMucChuDe")" class="button button-submit"> Chủ đề khác...</a>
+<br />
+<div style="clear:both"></div>
+
+
+
+
+
+
+

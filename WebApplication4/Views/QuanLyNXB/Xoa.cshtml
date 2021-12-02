@@ -1,0 +1,57 @@
+﻿@model WebApplication4.Models.NhaXuatBan
+
+@{
+    ViewBag.Title = "Xoa";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+
+<h3 style="color:red">Bạn có chắc chắn muốn xóa nhà xuất bản này không ?</h3>
+<div>
+    <h4>Nhà xuất bản</h4>
+    <h3 style="color:Red">@ViewBag.ThongBaoKT</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaNXB)
+        </dt>
+       
+        <dd>
+            @Html.DisplayFor(model => model.MaNXB)
+        </dd>
+     
+        <dt>
+            @Html.DisplayNameFor(model => model.TenNXB)
+        </dt>
+        
+        <dd>
+            @Html.DisplayFor(model => model.TenNXB)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </dt>
+        
+        <dd>
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.DienThoai)
+        </dt>
+        
+        <dd>
+            @Html.DisplayFor(model => model.DienThoai)
+        </dd>
+        
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Quay trở về", "Index")
+        </div>
+    }
+</div>

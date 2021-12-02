@@ -1,0 +1,83 @@
+﻿@using WebApplication4.Models
+@model List<GioHang>
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+<h2>Giỏ hàng của bạn</h2>
+@{ int tonggiatri = 0;}
+<table id="divGioHang">
+    <tr>
+        <td>Mã sách</td>
+
+        <td>Tên sách</td>
+
+        <td>Ảnh bìa</td>
+
+        <td>Đơn giá</td>
+
+
+        <td>Số lượng</td>
+
+        <td>Thành tiền</td>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        int dg = int.Parse(item.dDonGia.ToString());
+        int sl = item.iSoLuong;
+        tonggiatri = tonggiatri + dg * sl;
+        <tr>
+            <td style="width:150px;">@item.iMaSach</td>
+
+            <td style="width:500px;">@item.sTenSach</td>
+
+            <td style="width:250px;"><a href="@Url.Action("XemChiTiet", "Sach", new { @MaSach = item.iMaSach})"><img src="@Url.Content("~/HinhAnhSP/"+item.sAnhBia)" width="80" height="100" /></a></td>
+
+            <td style="width:250px;">
+                @String.Format("{0:0,0}", item.dDonGia) VNĐ
+            </td>
+
+            <td style="width:250px;">@item.iSoLuong</td>
+
+            <td style="width:250px;">@String.Format("{0:0,0}", item.ThanhTien) VNĐ</td>
+
+        </tr>
+
+    }
+    <tr>
+        <td colspan="6" style="text-align:right;color:black ;">
+            Tổng giá trị : @tonggiatri
+        </td>
+
+    </tr>
+
+    <tr>
+        <td colspan="6" style="text-align:right;color:blue ;">
+            @Html.ActionLink("Chỉnh sửa giỏ hàng", "SuaGioHang")
+        </td>
+
+    </tr>
+    <tr>
+        <td colspan="6" style="text-align:right;color:blue">
+            @using (Html.BeginForm("DatHang", "GioHang"))
+            {
+                <input type="submit" value="Đặt hàng" />
+            }
+        </td>
+    </tr>
+</table>
+@*Css giỏ hàng*@
+<style>
+    #divGioHang {
+        border: 1px solid #808080;
+        margin-left: 5%;
+    }
+
+        #divGioHang td {
+            padding: 10px;
+            border: 1px solid #808080;
+        }
+</style>

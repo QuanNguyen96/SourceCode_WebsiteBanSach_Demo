@@ -1,0 +1,62 @@
+﻿@using WebApplication4.Models;
+@model List<ChiTietDonHang>
+@{
+    ViewBag.Title = "XemChiTietDonHang";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+@{ long tonggiatridonhang = 0;}
+<h2 style="color:red;">Xem chi tiết đơn hàng</h2>/<br/>
+<table id="divGioHang">
+    <tr>
+        <td>Mã đơn hàng</td>
+        <td>Mã sách</td>
+
+        <td>Tên sách</td>
+
+        <td>Ảnh bìa</td>
+
+        <td>Đơn giá</td>
+
+
+        <td>Số lượng</td>
+    </tr>
+
+   
+    @foreach (var item in Model)
+    {
+        int dg = int.Parse(item.DonGia);
+        int sl = int.Parse(item.SoLuong.ToString());
+        tonggiatridonhang += (dg * sl);
+        <tr>
+            <td style="width:100px;">@item.MaDonHang</td>
+            <td style="width:100px;">@item.MaSach</td>
+
+            <td style="width:500px;">@item.Sach.TenSach</td>
+
+            <td style="width:250px;"><a href="@Url.Action("XemChiTiet", "Sach", new { @MaSach = item.MaSach})"><img src="@Url.Content("~/HinhAnhSP/"+item.Sach.AnhBia)" width="80" height="100" /></a></td>
+
+            <td style="width:250px;">
+                @String.Format("{0:0,0}", item.DonGia) VNĐ
+            </td>
+
+            <td style="width:250px;">@item.SoLuong</td>
+
+        </tr>
+    }
+</table>
+<br/><br /><br />
+<h3 style="margin-left:100px;">Tổng giá trị đơn hàng : @String.Format("{0:0,0}", tonggiatridonhang) VNĐ </h3>
+@*Css giỏ hàng*@
+<style>
+    #divGioHang {
+        border: 1px solid #808080;
+        margin-left: 5%;
+    }
+
+        #divGioHang td {
+            padding: 10px;
+            border: 1px solid #808080;
+        }
+</style>
+

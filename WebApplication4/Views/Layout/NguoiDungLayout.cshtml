@@ -1,0 +1,338 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @*chèn link css của trang free template dowload*@
+    <link href="~/Content/NguoiDungCssLayout/fonts.css" rel="stylesheet" />
+    <link href="~/Content/NguoiDungCssLayout/screen.css" rel="stylesheet" />
+    @*hèn css thiết kế*@
+    <link href="~/Content/NguoiDungCssLayout/NguoiDungCssLayout.css" rel="stylesheet" />
+    @*chèn font kí tự*@
+    <link href="~/Content/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    @*chèn link css, javascript nivosider*@
+    <link href="~/NivoSlider/nivo-slider.css" rel="stylesheet" />
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/NivoSlider/jquery.nivo.slider.js"></script>
+    <script src="~/NivoSlider/jquery.nivo.slider.pack.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+        var gmap = new google.maps.LatLng(20.992735, 105.849442);
+var marker;
+function initialize()
+{
+    var mapProp = {
+        center: new google.maps.LatLng(20.992765, 105.849463),
+         zoom:16,
+        mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+
+    var map=new google.maps.Map(document.getElementById("googleMap")
+    ,mapProp);
+
+  var styles = [
+    {
+      featureType: 'road.arterial',
+      elementType: 'all',
+      stylers: [
+        { hue: '#fff' },
+        { saturation: 100 },
+        { lightness: -48 },
+        { visibility: 'on' }
+      ]
+    },{
+      featureType: 'road',
+      elementType: 'all',
+      stylers: [
+
+      ]
+    },
+    {
+        featureType: 'water',
+        elementType: 'geometry.fill',
+        stylers: [
+            { color: '#adc9b8' }
+        ]
+    },{
+        featureType: 'landscape.natural',
+        elementType: 'all',
+        stylers: [
+            { hue: '#809f80' },
+            { lightness: -35 }
+        ]
+    }
+  ];
+
+  var styledMapType = new google.maps.StyledMapType(styles);
+  map.mapTypes.set('Styled', styledMapType);
+
+  marker = new google.maps.Marker({
+    map:map,
+    draggable:true,
+    animation: google.maps.Animation.DROP,
+    position: gmap
+  });
+  google.maps.event.addListener(marker, 'click', toggleBounce);
+}
+
+function toggleBounce() {
+
+  if (marker.getAnimation() !== null) {
+    marker.setAnimation(null);
+  } else {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+  }
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</head>
+<body>
+
+    <div id="ToanTrang">
+        <div style="width:100%">
+            <img src="~/HinhAnh/layout1.JPG" />
+        </div>
+        <div style="clear:both;"></div>
+        <section class="blank">
+            <div style="clear:both;"></div>
+            <div class="flash">
+                
+                <div class="icDienThoai">
+                    <i class="fa fa-phone"></i>
+                    (024) 1900-1560
+                </div>
+                @*Tạo div đăng ký đăng nhập*@
+                <div class="DangKyDangNhap">
+                    @Html.Action("GioHangPartial", "GioHang")
+                    @Html.Action("DangNhapPartial", "GioHang")
+
+                </div>
+            </div>
+
+            @*Xây dựng div menu header*@
+
+            <div class="flash success" id="divDanhMuc" style="color:#4cff00">
+                @*Hộp thoại tìm kiếm*@
+                <div id="txtTimKiem">
+                    @using (Html.BeginForm("KetQuaTimKiem", "TimKiem", FormMethod.Post))
+                    {
+                        @Html.TextBox("txtTimKiem", "", htmlAttributes: new { @class = "TextBoxTimKiem", @placeholder = "Nhập vào từ khóa cần tìm ..." })
+                        @*Chèn vào image button hình ảnh*@
+                        <div id="divHinhAnhTimKiem">
+                            <button type="submit"><img src="~/HinhAnh/imgSearch.png" /> </button>
+                        </div>
+                    }
+
+                </div>
+                @*Menu bên phải header*@
+                <ul class="navMenu">
+                    <li>
+                        <a href="@Url.Action("Index","Home")">Trang chủ</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("GioiThieu","Menu")">Giới thiệu</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("LienHe","Menu")">Liên hệ</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("HuongDan","Menu")">Hướng dẫn</a>
+                    </li>
+                    <li>
+                        <a href="#">Sách</a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </section>
+
+        <section id="divMenuSlider">
+            @*Div menu bên trái *@
+            <div id="divMenuLeft" >
+                @*Chèn vào partial view sách mới*@
+                <div class="activity">
+                    @Html.Action("SachMoiPartial", "Sach")
+
+                </div>
+            </div>
+            @*Chèn div nivoslider*@
+            <div id="slider" class="nivoSlider">
+                <img src="~/HinhAnh/h6.jpg" />
+                <img src="~/HinhAnh/Anh1.png" />
+                <img src="~/HinhAnh/Anh2.png" />
+                <img src="~/HinhAnh/Anh3.png" />
+                <img src="~/HinhAnh/h1.jpg" />
+                <img src="~/HinhAnh/h2.jpg" />
+                <img src="~/HinhAnh/h3.jpg" />
+                <img src="~/HinhAnh/h4.jpg" />
+                <img src="~/HinhAnh/h5.jpg" />
+                <img src="~/HinhAnh/h8.jpg" />
+                <img src="~/HinhAnh/h7.jpg" />
+            </div>
+            <div style="clear:both"></div>
+        </section>
+        @*Div body *@
+        <div id="NoiDung">
+            @RenderBody()
+
+        </div>
+        <div id="divChuDeVaNXB" style="border-bottom:#808080 solid 1px;">
+            <section>
+                @*Phần chủ đề*@
+                <div id="divChuDe">
+                    @Html.Action("ChuDePartial", "ChuDe")
+
+                </div>
+            </section>
+            <div style="clear:both"></div>
+            @*Div nhà xuất bản*@
+            <section class="blank items">
+                <div id="divLeft">
+                    <div class="item">
+                        <div class="item-info" id="divNhaXuatBan">
+                            @*Action partialview*@
+                            @Html.Action("NhaXuatBanPartial", "NhaXuatBan")
+
+                        </div>
+                        <img src="http://lorempixel.com/400/300/" alt="Image">
+                    </div>
+                </div>
+                <div id="divRight">
+                    @RenderSection("NoiDungBenPhai", false)
+                </div>
+            </section>
+        </div>
+        <div style="clear:both"></div>
+        <br />
+        <div style="border-top:#808080 solid 1px">
+            <section class="footer" style="color:black;margin-left:100px;">
+                <div style="width:300px;float:left">
+                    <h3>Về công ty</h3>
+                    <br />
+                    <a href="">Giới thiệu về công ty</a>
+                    <br />
+                    <a href="">Tuyển dụng</a>
+                    <br />
+                    <a href="">Góc báo chí</a>
+                    <br />
+                    <a href="">Chương trình đại lý</a>
+                    <br />
+                    <a href="">Chương trình bảo mật</a>
+                    <br />
+                    <a href="">Ứng dụng đọc Ebook</a>
+                </div>
+                <div style="width:300px;float:left">
+                    <h3>Trợ Giúp</h3>
+                    <br />
+                    <a href="">Quy định sử dụng </a>
+                    <br />
+                    <a href="">Hướng dẫn mua hàng</a>
+                    <br />
+                    <a href="">Phương thức thanh toán</a>
+                    <br />
+                    <a href="">Phương thức vận chuyển</a>
+                    <br />
+                    <a href="">Các câu hỏi thường gặp</a>
+                    <br />
+                    <a href="">Bọc sách bằng bìa plastic</a>
+                </div>
+                <div style="width:300px;float:left">
+                    <h3>Tin tức sách</h3>
+                    <br />
+                    <a href="">Tin tức </a>
+                    <br />
+                    <a href="">Chân dung</a>
+                    <br />
+                    <a href="">Điểm sách</a>
+                    <br />
+                    <a href="">Phê bình</a>
+                    <br />
+                    <a href="">Chương trình khuyến mại</a>
+
+                </div>
+                <div style="width:300px;float:left">
+                    <h3>FOLLLOWS US</h3>
+                    <br />
+                    <img src="~/HinhAnh/facebook.JPG" width="50" height="50" />
+                    <img src="~/HinhAnh/twitch.JPG" width="50" height="50" />
+                    <br />
+                    <img src="~/HinhAnh/gg.JPG" width="50" height="50" />
+                    <img src="~/HinhAnh/e.JPG" width="50" height="50" />
+                </div>
+                <div style="width:500px;float:left">
+                    <h3>Chấp nhận thanh toán</h3>
+                    <br />
+                    <img src="~/HinhAnh/visa.JPG" width="100" height="50" />
+                    <img src="~/HinhAnh/matercard.JPG" width="100" height="50" />
+                    <img src="~/HinhAnh/jcb.JPG" width="100" height="50" />
+                    <br />
+                    <img src="~/HinhAnh/atm.JPG" width="100" height="50" />
+                    <img src="~/HinhAnh/tienmat.JPG" width="100" height="50" />
+                    <img src="~/HinhAnh/payo.JPG" width="100" height="50" />
+                </div>
+            </section>
+        </div>
+        <div style="clear:both;"></div>
+        <div>
+            <section class="footer2" style="color:black;margin-left:100px;">
+                <div style="width:300px;float:left;margin-top:10px;">
+                    <img src="~/HinhAnh/Tổng-hợp-ảnh-đẹp-nhất-ở-Sapa-toursapagiatot-6.jpg" width="280"; height="300"/>
+                </div>
+                <div style="width:300px;float:left">
+                    <h3>Địa chỉ</h3>
+                    <br />
+                    <a href="">cơ sở 1: số nhà 134 , phường Trương Định , Quận Hai Bà Trưng , Hà Nội </a>
+                    <br />
+                    <a href="">cơ sở 2: số nhà 158 , Đường Láng , Tây Sơn , Hà Nội , Việt Nam </a>
+                    <br />
+                    <a href="">Website nhận đặt hàng trực tuyến và giao hàng tận nơi , hỗ trợ mua và</a>
+                    <br />
+                    <a href="">nhận hàng trực tiếp tại cửa hàng hoặc trung tâm xử lý đơn hàng</a>
+                </div>
+                <div style="width:300px;float:left">
+                    <h3>Liên hệ</h3>
+                    <br />
+                    <a href="">Trung tâm văn phòng chính : số nhà 134 , phường Trương Định , Quận Hai Bà Trưng </a>
+                    <br />
+                    <a href="">, Hà Nội  </a>
+                    <br />
+                    <a href="">Hotline : (024)12345678)</a>
+                    <br />
+                    <a href="">E-Mail :Quan96kun@gmail.com</a>
+
+                </div>
+                <div style="width:300px;float:left;margin-left:30px;">
+                    <h3>Chỉ đường</h3>
+                    <br />
+                    <div id="googleMap" style="width: 600px; height: 235px;">Google Map</div>
+
+                </div>
+               
+            </section>
+        </div>
+        <div style="color:black">
+            <a href="" class="button button-buy">
+                2018 -Bản quyền của công ty bán sách NVQ - NVQ.vn
+                giấy chứng Đăng kí kinh doanh số 030404030304 do sở kế hoạch và đầu tư Tp.Hà Nội cấp ngày 1/1/2018 .
+            </a>
+        </div>
+
+
+
+    </div>
+    @*script chay slider*@
+    <script type="text/javascript">
+        $(window).load(function () {
+            $('#slider').nivoSlider({
+                controlNav: false,
+                nextText: '',
+                prevText: ''
+            });
+        });
+    </script>
+</body>
+</html>

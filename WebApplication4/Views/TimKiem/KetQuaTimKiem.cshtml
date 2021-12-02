@@ -1,0 +1,58 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<WebApplication4.Models.Sach>
+<link href="~/Content/TrangChuCss.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "KetQuaTimKiem";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+<h2 style="margin-left:2%;font-weight:normal;color:red">Kết quả tìm kiếm</h2>
+<div>@ViewBag.ThongBao</div>
+<div id="divBody" style="background:White">
+    @{ int i = 0;}
+    @foreach (var item in Model)
+    {
+        i++;
+        <div id="SanPham">
+            <div id="ThongTin" style="width:200px;">
+                <a href="@Url.Action("XemChiTiet", "Sach", new { @MaSach=item.MaSach })">
+                    <div style="border-bottom:1px solid rgba(0,0,0,.2)">
+                        <div id="AnhBia"><img src="@Url.Content("~/HinhAnhSP/"+item.AnhBia)" width="150" height="200" /></div>
+
+                    </div>
+                    @*Nếu tên sách dài hơn 30 ký tự thì chúng ta sẽ cắt tên sách ra lấy từ ký tự 0 đến ký tự 35*@
+                    @if (item.TenSach.Length < 30)
+                {
+                        <div id="TenSach" title="@item.TenSach">@item.TenSach.</div>
+                    }
+                    else
+                    {
+                        <div id="TenSach" title="@item.TenSach"> @item.TenSach.Substring(0, 30) ...</div>
+                    }
+                    @*Dịch dấu chấm động đơn giá sử dụng string.Format("{0:0,0}", tham số)*@
+                    <div id="DonGia" style="color:orange"><font color="Green">Giá:</font> @String.Format("{0:0,0}", item.GiaBan) VNĐ</div>
+            </div>
+            <div id="GioHang">
+                @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = item.MaSach, @strURL = Request.Url.ToString() }))
+                {
+                    <input type="submit" style="cursor:pointer" value="Thêm vào giỏ hàng &#xf07a;" id="btnGioHang" class="btn btn-primary">
+                }
+            </div>
+        </div>
+        if (i % 4 == 0)
+        {
+            <div style="clear:both"></div>
+        }
+    }
+</div>
+<div style="clear:both"></div>
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("KetQuaTimKiem", new { page = page, @sTuKhoa = ViewBag.TuKhoa }))
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>

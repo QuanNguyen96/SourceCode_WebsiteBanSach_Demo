@@ -1,0 +1,32 @@
+﻿@model WebApplication4.Models.ChuDe
+
+@{
+    ViewBag.Title = "HienThi";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<h2 style="color:red">Hiển thị </h2>
+
+<div>
+    <h4>Chủ đề</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaChuDe)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaChuDe)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TenChuDe)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TenChuDe)
+        </dd>
+    </dl>
+</div>
+<br/><br /><br />
+<p>
+    @Html.ActionLink("Trở về", "Index")  |
+    @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { @MaChude = Model.MaChuDe })
+</p>

@@ -1,0 +1,37 @@
+﻿@model WebApplication4.Models.ChuDe
+
+@{
+    ViewBag.Title = "Xoa";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+
+<h3 style="color:red">Bạn có chắc chắn muốn xóa chủ đề này không?</h3>
+<div>
+    <h4>Chủ đề</h4>
+    <h3 style="color:red">@ViewBag.ThongBaoKT</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaChuDe)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaChuDe)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TenChuDe)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TenChuDe)
+        </dd>
+    </dl>
+    <br/><br /><br />
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Quay trở về", "Index")
+        </div>
+    }
+</div>

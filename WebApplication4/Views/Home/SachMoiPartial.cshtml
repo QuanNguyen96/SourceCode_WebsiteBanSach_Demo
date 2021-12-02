@@ -1,0 +1,29 @@
+﻿@using WebApplication4.Models;
+@model List<Sach>
+    
+@* đưa sách từ cơ sở dữ liệu lên*@
+<h1 class="item-header">Sách Mới</h1>
+@{
+    foreach (var item in Model)
+    {
+        <div class="activity-list-update">
+            <img src="@Url.Content("~/HinhAnhSP/"+item.AnhBia)" width="50" height="50" alt="Image">
+            @*Nếu tên sách dài hơn 30 ký tự thì chúng ta sẽ cắt tên sách ra lấy từ ký tự 0 đến ký tự 35*@
+            @if (item.TenSach.Length > 30)
+            {
+                <p><strong title="@item.TenSach">Tiêu đề: @item.TenSach.Substring(0, 30)...</strong><br /><a href="@Url.Action("XemChiTiet", new { @masach=item.MaSach })">Xem chi tiết</a></p>
+            }
+            else
+            {
+                <p><strong title="@item.TenSach">Tiêu đề: @item.TenSach</strong><br /><a href="@Url.Action("XemChiTiet", new { @masach=item.MaSach })">Xem chi tiết</a></p>
+                <div class="clear"></div>
+            }
+
+        </div>
+    }
+}
+
+<a href="#" class="item-footer green">
+    Sách loại mới nhất
+</a>
+

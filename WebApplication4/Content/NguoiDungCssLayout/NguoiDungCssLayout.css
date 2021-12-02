@@ -1,0 +1,110 @@
+﻿
+/*Sử dụng độ rộng cho div toàn trang*/
+div#ToanTrang {
+    position:relative;
+    font-family:'Segoe UI';
+    font-weight:bold;
+    background-color:white;
+
+}
+/*Thiết kế link đăng ký đăng nhập*/
+.DangKyDangNhap {
+    float:right;
+    margin-top:-1%;
+}
+.DangKyDangNhap a:hover {
+    text-decoration:none;
+    color:green;
+    
+}
+.icDienThoai {
+    margin-top:-1%;
+    float:left;
+
+}
+/*css divDanhMuc*/
+#divDanhMuc {
+height:30px;
+
+}
+/*css cho menu header*/
+.navMenu {
+    float:right;
+    margin-right:10%;
+}
+.navMenu li{
+    display:inline;
+    border-right:solid 1px rgba(0,0,0,.1);
+    padding:20px;
+    padding-top:19px;
+    padding-bottom:22px;
+         -webkit-transition:all .5s ease-out;  
+      -moz-transition:all .5s ease-out;  
+       -ms-transition:all .5s ease-out;  
+}
+/*Css hover thay đổi màu chậm*/
+.navMenu li:hover{
+    background-color:rgba(0,0,0,.5);
+     -webkit-transition:all .5s ease-out;  
+      -moz-transition:all .5s ease-out;  
+       -ms-transition:all .5s ease-out;  
+}
+.navMenu a:hover {
+    text-decoration:none;
+
+}
+/*css divTimKiem*/
+#txtTimKiem {
+    float:left;
+    margin-left:5%;
+}
+#txtTimKiem input{
+     height:0;
+     
+}
+/*css image button hình ảnh tìm kiếm*/
+#divHinhAnhTimKiem button {
+    margin-right:-65px;
+    padding:0 10px 0 10px;
+}
+#divHinhAnhTimKiem button:hover {
+    
+    background-color:rgba(0,0,0,.5);
+
+}
+#divHinhAnhTimKiem img {
+    width:30px;
+    height:30px;
+}
+/*Css cho nivoslider */
+#slider {
+    float:right;
+    width:1400px;
+    height:375px;
+ 
+}
+    #slider img {
+      width:1400px;
+      height:375px;
+    }
+#divMenuLeft{
+     float:left;
+
+}
+/*Div nhà xuất bản*/
+#divLeft {
+    width:23%;
+    float:left;
+    border-right:solid 1px rgba(0,0,0,.5);
+    padding-top:50px;
+
+}
+#divLeft .item{
+    width:100%;    
+}
+#divRight {
+      float:right;
+      width:75%;
+      
+}
+

@@ -1,0 +1,71 @@
+﻿@using WebApplication4.Models
+@model List<GioHang>
+@{
+    ViewBag.Title = "Sửa giỏ hàng";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+<h2>Giỏ hàng của bạn</h2>
+<table id="divGioHang">
+    <tr>
+        <td>Mã sách</td>
+
+        <td>Tên sách</td>
+
+        <td>Ảnh bìa</td>
+
+        <td>Đơn giá</td>
+
+
+        <td>Số lượng</td>
+
+        <td>Thành tiền</td>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td style="width:150px;">@item.iMaSach</td>
+
+            <td style="width:500px;">@item.sTenSach</td>
+
+            <td style="width:250px;"><img src="@Url.Content("~/HinhAnhSP/"+item.sAnhBia)" width="80" height="100" /></td>
+
+            <td style="width:250px;">
+                @String.Format("{0:0,0}", item.dDonGia) VNĐ
+            </td>
+            @*Chỉnh sửa giỏ hàng gọi về action CapNhatGioHang*@
+                @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @iMaSach = item.iMaSach }))
+                {
+                    <td style="width:100px; color:#808080;margin-left:40px;">@Html.TextBox("txtSoLuong", item.iSoLuong) </td>
+
+
+
+
+                    <td>@String.Format("{0:0,0}", item.ThanhTien) VNĐ</td>
+                    <td>
+                        <input type="submit" value="Cập nhật" style="margin-left:10px;" />
+                        <br />
+                        @*Xóa giỏ hàng gọi về Action XoaGioHang*@
+                        @Html.ActionLink("Xóa", "XoaGioHang", new { @iMaSach = item.iMaSach })
+                    </td>
+                }
+            <td></td>
+        </tr>
+
+    }
+</table>
+@*Css giỏ hàng*@
+<style>
+    #divGioHang {
+        border: 1px solid #808080;
+        margin-left: 10%;
+    }
+
+        #divGioHang td {
+            padding: 10px;
+            border: 1px solid #808080;
+        }
+</style>

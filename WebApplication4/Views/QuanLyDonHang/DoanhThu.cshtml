@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "DoanhThu";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+<h2 style="color:red">Báo cáo doanh thu</h2> <br/>
+<h3>@ViewBag.TBL</h3>
+@using (Html.BeginForm("KQDT", "QuanLyDonHang", FormMethod.Post))
+{
+    <div style="float:left;">
+        <div style="width:100px;">Từ ngày :</div>    <div>@Html.TextBox("txtNgay1", "", htmlAttributes: new { @class = "TextBoxTimKiem", @placeholder = "Nhập vào Ngày ..." })</div>
+        <div style="width:100px;">Đến ngày :</div>    <div>@Html.TextBox("txtNgay2", "", htmlAttributes: new { @class = "TextBoxTimKiem", @placeholder = "Nhập vào Ngày ..." })</div>
+    </div>
+    @*Chèn vào image button hình ảnh*@
+    <div style="float:left;margin-left:100px;margin-top:30px;">
+        <button type="submit"><img src="~/HinhAnh/imgSearch.png" width="50" height="50"/> </button>
+    </div>
+}
+
